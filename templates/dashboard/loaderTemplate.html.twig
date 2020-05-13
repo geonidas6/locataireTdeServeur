@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block rightAsideBar %}
+    {{ render(controller('App\\Controller\\IndexController::rightAsideBar')) }}
+    {#   {{ include('user/top.html.twig') }} #}
+{% endblock %}
+
+{% block topbar %}
+
+    {{ render(controller('App\\Controller\\IndexController::topbar')) }}
+    {#    {{ include('user/aside.html.twig') }} #}
+{% endblock %}
+
+
+{% block asidebar %}
+    {{ render(controller('App\\Controller\\IndexController::asidebar')) }}
+    {#   {{ include('user/top.html.twig') }} #}
+{% endblock %}
+
+
+
+
+{% block footerbar  %}
+    {{ render(controller('App\\Controller\\IndexController::footerbar')) }}
+    {#   {{ include('user/top.html.twig') }} #}
+{% endblock %}

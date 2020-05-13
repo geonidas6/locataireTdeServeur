@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidat index{% endblock %}
+
+
+{% block body %}
+    <h1>Candidat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date_naissance</th>
+                <th>Lieu_naissance</th>
+                <th>Sexe</th>
+                <th>Prefeture</th>
+                <th>Diplome</th>
+                <th>Lieu_centre_concour</th>
+                <th>Etablissement_de_provenance</th>
+                <th>Jury</th>
+                <th>Filier_serie</th>
+                <th>Matier_eliminer</th>
+                <th>Amphi</th>
+                <th>Numero_salle</th>
+                <th>Semestre</th>
+                <th>Datecreation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidat in candidats %}
+            <tr>
+                <td>{{ candidat.id }}</td>
+                <td>{{ candidat.nom }}</td>
+                <td>{{ candidat.prenom }}</td>
+                <td>{{ candidat.dateNaissance ? candidat.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ candidat.lieuNaissance }}</td>
+                <td>{{ candidat.sexe }}</td>
+                <td>{{ candidat.prefeture }}</td>
+                <td>{{ candidat.diplome }}</td>
+                <td>{{ candidat.lieuCentreConcour }}</td>
+                <td>{{ candidat.etablissementDeProvenance }}</td>
+                <td>{{ candidat.jury }}</td>
+                <td>{{ candidat.filierSerie }}</td>
+                <td>{{ candidat.matierEliminer }}</td>
+                <td>{{ candidat.amphi }}</td>
+                <td>{{ candidat.numeroSalle }}</td>
+                <td>{{ candidat.semestre }}</td>
+                <td>{{ candidat.datecreation ? candidat.datecreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('candidat_show', {'id': candidat.id}) }}">show</a>
+                    <a href="{{ path('candidat_edit', {'id': candidat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidat_new') }}">Create new</a>
+{% endblock %}

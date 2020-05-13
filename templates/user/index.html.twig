@@ -1,0 +1,136 @@
+{% extends 'dashboard/loaderTemplate.html.twig' %}
+ {% block stylesheets %}
+
+
+
+
+ {% endblock %}
+{% block title %}Utilisateurs{% endblock %}
+{% block main %}
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row align-items-end">
+                    <div class="col-lg-8">
+                        <div class="page-header-title">
+                            <i class="ik ik-terminal bg-blue"></i>
+                            <div class="d-inline">
+                                <h5>Liste des utilisateurs</h5>
+                                <span>Liste de tous les utilisateurs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <nav class="breadcrumb-container" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#"><i class="ik ik-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">Liste</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">utilisateur</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Liste des utilisateurs</h3>
+                        </div>
+                        <div class="card-body">
+                            <table id="data_tableUser"
+                                   class=" dt-responsive table table-striped table-bordered dt-responsive nowrap"
+                                   cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>LastName</th>
+                                    <th>FirstName</th>
+                                    <th>Mode de Prélèvement</th>
+                                    <th class="nowrap">Action</th>
+                                    <th>Profile</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.lastName }}</td>
+                                        <td>{{ user.firstName }}</td>
+                                        <td>
+                                            {% if (user.profil is not empty) and ((user.profil =='PORFIL_TRANSITAIRE') or (user.profil == 'PORFIL_EXPORTATEUR')) %}
+                                                {% if user.modepaiement == 'MOD_PAIEMENT_MENSUEL' %}
+                                                <a class="text-info"   href="{{ path('user_change_mode_paiement', {'id_user':user.id, 'is_mensualiteMode': 0}) }}">Menssuel <i class="fa fa-plus-circle"></i> Changer en mode Instantanée</a>
+                                                {% else %}
+                                                    <a class="text-success"   href="{{ path('user_change_mode_paiement', {'id_user':user.id, 'is_mensualiteMode': 1}) }}">Instantanée <i class="fa fa-plus-circle"></i> Changer en mode Mensuel</a>
+                                                {% endif %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary"   href="{{ path('user_edit', {'admin': 0, 'id': user.id}) }}"><i class="fa fa-user-edit"></i></a>
+                                        </td>
+                                        <td>{#{ user.roles ? user.roles|json_encode : '' }#}
+                                            <a  {% if (user.profil is not empty) and (user.profil =='PORFIL_CAISSIER') %} class="badge badge-success mb-1" {% else %} class="badge badge-secondary mb-1" {% endif %} href="{{ path('user_chnageProfil', {'id': user.id,'profile':'PORFIL_CAISSIER'}) }}">CAISSIER</a> |
+                                            <a {% if (user.profil is not empty) and (user.profil =='PORFIL_TRANSITAIRE')  %} class="badge badge-success mb-1" {% else %} class="badge badge-secondary mb-1" {% endif %} href="{{ path('user_chnageProfil', {'id': user.id,'profile':'PORFIL_TRANSITAIRE'}) }}">TRANSITAIRE</a> |
+                                            <a {% if (user.profil is not empty) and (user.profil =='PORFIL_VALIDATEUR')  %} class="badge badge-success mb-1" {% else %} class="badge badge-secondary mb-1" {% endif %} href="{{ path('user_chnageProfil', {'id': user.id,'profile':'PORFIL_VALIDATEUR'}) }}">VALIDATEUR</a> |
+                                            <a {% if (user.profil is not empty) and (user.profil =='PORFIL_CERTIFICATEUR')  %} class="badge badge-success mb-1" {% else %} class="badge badge-secondary mb-1" {% endif %} href="{{ path('user_chnageProfil', {'id': user.id,'profile':'PORFIL_CERTIFICATEUR'}) }}">CERTIFICATEUR</a> |
+                                            <a {% if (user.profil is not empty) and (user.profil =='PORFIL_AGENT_CONTROLEUR')  %} class="badge badge-success mb-1" {% else %} class="badge badge-secondary mb-1" {% endif %} href="{{ path('user_chnageProfil', {'id': user.id,'profile':'PORFIL_AGENT_CONTROLEUR'}) }}">AGENT DE CONTROL</a> |
+                                            <a {% if (user.profil is not empty) and (user.profil =='PORFIL_EXPORTATEUR')  %} class="badge badge-success mb-1" {% else %} class="badge badge-secondary mb-1" {% endif %} href="{{ path('user_chnageProfil', {'id': user.id,'profile':'PORFIL_EXPORTATEUR'}) }}">EXPORTATEUR</a> |
+                                            <a {% if (user.profil is not empty) and (user.profil =='PORFIL_SUPERVISEUR')  %} class="badge badge-success mb-1" {% else %} class="badge badge-secondary mb-1" {% endif %} href="{{ path('user_chnageProfil', {'id': user.id,'profile':'PORFIL_SUPERVISEUR'}) }}">SUPERVISEUR</a> |
+                                            <a {% if (user.profil is not empty) and (user.profil =='PORFIL_ADMINISTRATEUR')  %} class="badge badge-success mb-1" {% else %} class="badge badge-secondary mb-1" {% endif %} href="{{ path('user_chnageProfil', {'id': user.id,'profile':'PORFIL_ADMINISTRATEUR'}) }}">ADMINISTRATEUR</a> |
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <a class="btn btn-success" href="{{ path('user_new') }}"><i class="ion-ios-add"></i>Ajouter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+
+
+
+    <script type="text/javascript">
+        $('#data_tableUser').DataTable({
+            responsive: true,
+            destroy: true,
+            order: [[ 0, 'desc' ]],
+            'language': {
+                'sProcessing': 'Traitement en cours ...',
+                'sLengthMenu': 'Afficher _MENU_ lignes',
+                'sZeroRecords': 'Aucun résultat trouvé',
+                'sEmptyTable': 'Aucune donnée disponible',
+                'sInfo': 'Lignes _START_ à _END_ sur _TOTAL_',
+                'sInfoEmpty': 'Aucune ligne affichée',
+                'sInfoFiltered': '(Filtrer un maximum de_MAX_)',
+                'sInfoPostFix': '',
+                'sSearch': 'Chercher:',
+                'sUrl': '',
+                'sInfoThousands': ',',
+                'sLoadingRecords': 'Chargement...',
+                'oPaginate': {
+                    'sFirst': 'Premier', 'sLast': 'Dernier', 'sNext': 'Suivant', 'sPrevious': 'Précédent'
+                },
+                'oAria': {
+                    'sSortAscending': ': Trier par ordre croissant', 'sSortDescending': ': Trier par ordre décroissant'
+                }
+            }
+        });
+
+
+
+    </script>
+{% endblock %}
+
+
+
+
+

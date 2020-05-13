@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Candidat{% endblock %}
+
+{% block body %}
+    <h1>Candidat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ candidat.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ candidat.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ candidat.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Date_naissance</th>
+                <td>{{ candidat.dateNaissance ? candidat.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_naissance</th>
+                <td>{{ candidat.lieuNaissance }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ candidat.sexe }}</td>
+            </tr>
+            <tr>
+                <th>Prefeture</th>
+                <td>{{ candidat.prefeture }}</td>
+            </tr>
+            <tr>
+                <th>Diplome</th>
+                <td>{{ candidat.diplome }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_centre_concour</th>
+                <td>{{ candidat.lieuCentreConcour }}</td>
+            </tr>
+            <tr>
+                <th>Etablissement_de_provenance</th>
+                <td>{{ candidat.etablissementDeProvenance }}</td>
+            </tr>
+            <tr>
+                <th>Jury</th>
+                <td>{{ candidat.jury }}</td>
+            </tr>
+            <tr>
+                <th>Filier_serie</th>
+                <td>{{ candidat.filierSerie }}</td>
+            </tr>
+            <tr>
+                <th>Matier_eliminer</th>
+                <td>{{ candidat.matierEliminer }}</td>
+            </tr>
+            <tr>
+                <th>Amphi</th>
+                <td>{{ candidat.amphi }}</td>
+            </tr>
+            <tr>
+                <th>Numero_salle</th>
+                <td>{{ candidat.numeroSalle }}</td>
+            </tr>
+            <tr>
+                <th>Semestre</th>
+                <td>{{ candidat.semestre }}</td>
+            </tr>
+            <tr>
+                <th>Datecreation</th>
+                <td>{{ candidat.datecreation ? candidat.datecreation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidat_index') }}">back to list</a>
+
+    <a href="{{ path('candidat_edit', {'id': candidat.id}) }}">edit</a>
+
+    {{ include('candidat/_delete_form.html.twig') }}
+{% endblock %}

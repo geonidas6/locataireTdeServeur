@@ -1,0 +1,68 @@
+{% extends 'dashboard/loaderTemplate.html.twig' %}
+{% block title %}New user{% endblock %}
+{% block main %}
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row align-items-end">
+                <div class="col-lg-8">
+                    <div class="page-header-title">
+                        <i class="ik ik-terminal bg-blue"></i>
+                        <div class="d-inline">
+                            <h5>Utilisateurs</h5>
+                            <span>Formulaire d'ajout d'un utilisateur'</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <nav class="breadcrumb-container" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#"><i class="ik ik-home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="#">Formulaire</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Utilisateur</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>User Form</h3>
+                    </div>
+                    <div class="card-body">
+
+    {{ include('user/_form.html.twig') }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // you may need to change this code if you are not using Bootstrap Datepicker
+            $('#vgmcertificat_requestTime').datetimepicker();
+            $('#vgmcertificat_validationTime').datetimepicker();
+            $('#vgmcertificat_weightingDate1').datetimepicker();
+            $('#vgmcertificat_weightingDate2').datetimepicker();
+        });
+
+        $("#vgmcertificat_tvfDate").dateDropper({
+            dropWidth: 200,
+            format: 'Y-m-d',
+            dropPrimaryColor: "#1abc9c",
+            dropBorder: "1px solid #1abc9c"
+        });
+
+    </script>
+{% endblock %}
+
+
+

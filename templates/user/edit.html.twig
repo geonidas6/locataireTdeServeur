@@ -1,0 +1,288 @@
+{% extends 'dashboard/loaderTemplate.html.twig' %}
+{% block title %}Modification d'un utilisateur
+{% endblock %}
+{% block main %}
+	<div class="main-content">
+		<div class="container-fluid">
+			<div class="page-header">
+				<div class="row align-items-end">
+					<div class="col-lg-8">
+						<div class="page-header-title">
+							<i class="ik ik-file-text bg-blue"></i>
+							<div class="d-inline">
+								<h5>Profil</h5>
+								<span>Formulaire de modification du profil</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<nav class="breadcrumb-container" aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="#">
+										<i class="ik ik-home"></i>
+									</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="#">Page</a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">Profil</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4 col-md-5">
+					<div class="card">
+						<div class="card-body">
+							<div class="text-center">
+								<div id="crop-avatar">
+									<img id="profile-pic" class="rounded-circle" width="150" src="{% if user.mediaObject is null %} {{ asset('img/login.jpeg') }} {% else %} {{ asset('uploads/profile/'~user.mediaObject.filePath) }} {% endif %}">
+								</div>
+								<h4 class="card-title mt-10">{{ user.firstName ~" "~ user.lastName }}</h4>
+								<p class="card-subtitle">
+									{% if is_super_admin == false %}
+										{% if user.profil == 'PORFIL_CAISSIER' %}
+											{% trans  from 'profil' %} PORFIL_CAISSIER  {% endtrans %}
+										{% elseif user.profil == 'PORFIL_TRANSITAIRE' %}
+											{% trans  from 'profil' %} PORFIL_TRANSITAIRE  {% endtrans %}
+										{% elseif user.profil == 'PORFIL_VALIDATEUR' %}
+											{% trans  from 'profil' %} PORFIL_VALIDATEUR  {% endtrans %}
+										{% elseif user.profil == 'PORFIL_CERTIFICATEUR' %}
+											{% trans  from 'profil' %} PORFIL_CERTIFICATEUR  {% endtrans %}
+										{% elseif user.profil == 'PORFIL_AGENT_CONTROLEUR' %}
+											{% trans  from 'profil' %} PORFIL_AGENT_CONTROLEUR  {% endtrans %}
+										{% elseif user.profil == 'PORFIL_EXPORTATEUR' %}
+											{% trans  from 'profil' %} PORFIL_EXPORTATEUR  {% endtrans %}
+										{% elseif user.profil == 'PORFIL_SUPERVISEUR' %}
+											{% trans  from 'profil' %} PORFIL_SUPERVISEUR  {% endtrans %}
+										{% elseif user.profil == 'PORFIL_ADMINISTRATEUR' %}
+											{% trans  from 'profil' %} PORFIL_ADMINISTRATEUR  {% endtrans %}
+										{% elseif user.profil == 'PORFIL_SUPERVISEUR' %}
+											{% trans  from 'profil' %} PORFIL_SUPERVISEUR  {% endtrans %}
+										{% else %}
+											{% trans  from 'profil' %} PORFIL_TRANSITAIRE  {% endtrans %}
+										{% endif %}
+									{% else %}
+									SUPER ADMINISTRATEUR
+									{% endif %}
+                                </p>
+							</div>
+						</div>
+						<hr class="mb-0">
+						<div class="card-body">
+							<h6>username:
+								{{user.username}}</h6>
+							<h6>Email:
+								{{user.email}}</h6>
+							<h6>Tel:
+								{{user.tel}}</h6>
+							<br/>
+							<a id="change_photo" class="btn btn-info " style="width: 100%;">
+								<i class="fa fa-edit m-right-xs"></i>
+								{% trans  from 'user' into  app.session.get('Langue') %}
+								Changer la photo de profil
+								{% endtrans %}</a>
+							<a id="submit_photo" style="display: none" style="width: 100%;" class="btn btn-success">
+								<i class="fa fa-edit m-right-xs"></i>
+								{% trans  from 'user' into  app.session.get('Langue') %}
+								Soumettre
+								{% endtrans %}</a>
+							<a id="cancel_photo" style="display: none" style="width: 100%;" class="btn btn-warning">
+								<i class="fa fa-edit m-right-xs"></i>
+								{% trans  from 'user' into  app.session.get('Langue') %}
+								Annuler
+								{% endtrans %}</a>
+							<form id="input_form" style="display: none">
+								<input type="file" id="image_input" name="image"/>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-7">
+					<div class="card">
+						<ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="pills-timeline-tab" data-toggle="pill" href="#current-month" role="tab" aria-controls="pills-timeline" aria-selected="true">Profil</a>
+							</li>
+							{% if isExportateur == 1  and ((is_admin == true) or (is_super_admin == true)) %}
+								<li class="nav-item">
+									<a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#previous-month" role="tab" aria-controls="pills-setting" aria-selected="false">Entreprise</a>
+								</li>
+							{% endif %}
+						</ul>
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="current-month" role="tabpanel" aria-labelledby="pills-timeline-tab">
+								<div class="card-body">
+									<div class="profiletimeline mt-0">
+										<div class="sl-item">
+											<div class="sl-left">
+												<img src="{{ asset('img/logo.svg') }}" alt="user" class="rounded-circle"/>
+											</div>
+											<div class="sl-right">
+												<div>
+													{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% if isExportateur == 1  and ((is_admin == true) or (is_super_admin == true)) %}
+								<div class="tab-pane fade" id="previous-month" role="tabpanel" aria-labelledby="pills-setting-tab">
+									<div class="card-body">
+
+										{{ include('exportateur_entreprise/_form.html.twig', {'button_label': 'Update'}) }}
+
+									</div>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	<script type="text/javascript">
+		$(document).ready(function () { // you may need to change this code if you are not using Bootstrap Datepicker
+$('#vgmcertificat_requestTime').datetimepicker();
+$('#vgmcertificat_validationTime').datetimepicker();
+$('#vgmcertificat_weightingDate1').datetimepicker();
+$('#vgmcertificat_weightingDate2').datetimepicker();
+});
+
+$("#vgmcertificat_tvfDate").dateDropper({dropWidth: 200, format: 'Y-m-d', dropPrimaryColor: "#1abc9c", dropBorder: "1px solid #1abc9c"});
+
+// =========================
+
+
+$(function () {
+var img_div = $('#crop-avatar');
+var img_old_src = $('#profile-pic').prop('src');
+var change_photo = $("#change_photo");
+var submit_photo = $("#submit_photo");
+var cancel_photo = $("#cancel_photo");
+var img_file;
+change_photo.click(function () {
+$("input[id='image_input']").trigger('click');
+});
+cancel_photo.click(function () {
+console.log(img_old_src);
+$('#profile-pic').prop('src', img_old_src);
+img_file = undefined;
+resetButtons();
+});
+submit_photo.click(function () {
+if (img_file !== undefined) {
+
+$.toast({
+heading: 'warning',
+text: 'Mise à jour de la photo de profil en cours.',
+showHideTransition: 'slide',
+icon: 'warning',
+loaderBg: '#57c7d4',
+position: 'top-rigth'
+});
+sendImage();
+}
+});
+function resetButtons() {
+change_photo.show();
+submit_photo.hide();
+cancel_photo.hide();
+img_file = undefined;
+$("form[id='input_form']").trigger('reset');
+}
+$("input:file").on('change', function () {
+var countFiles = $(this)[0].files.length;
+var imgPath = $(this)[0].value;
+var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+if (extn === "gif" || extn === "png" || extn === "jpg" || extn === "jpeg") {
+if (typeof(FileReader) !== "undefined") { // loop for each file selected for uploaded.
+var that = $(this);
+for (var i = 0; i < countFiles; i++) {
+var reader = new FileReader();
+reader.onload = function (e) {
+img_div.empty();
+img_div.append(($("<img />", {
+"src": e.target.result,
+"class": "rounded-circle",
+// "style": "max-height : 60px; margin-top:20px"
+"alt": "Avatar",
+"title": "Photo de profil",
+'id': "profile-pic",
+"width": 150
+})));
+img_file = that[0].files[0];
+change_photo.hide();
+submit_photo.show();
+cancel_photo.show();
+};
+reader.readAsDataURL($(this)[0].files[i]);
+}
+} else {
+$.toast({
+heading: 'Error',
+text: 'Votre navigateur ne supporte pas FileReader.',
+showHideTransition: 'slide',
+icon: 'error',
+loaderBg: '#57c7d4',
+position: 'top-rigth'
+});
+
+}
+} else {
+$.toast({
+heading: 'Error',
+text: 'Sélectionnez uniquement des images.',
+showHideTransition: 'slide',
+icon: 'error',
+loaderBg: '#57c7d4',
+position: 'top-rigth'
+});
+}
+});
+// Fonction pour charger l'image , et cacher le span, en cas d'echec, on supprime la div
+function sendImage() {
+var data = new FormData();
+data.append("picture", img_file);
+console.log(img_file);
+$.ajax({
+url: "{{ path('user_profile_pic_change') }}",
+type: "POST",
+data: data,
+processData: false,
+contentType: false,
+success: function (data) {
+console.log(data);
+$.toast({
+heading: 'success',
+text: 'Mise à jour effectuée avec succès.',
+showHideTransition: 'slide',
+icon: 'success',
+loaderBg: '#57c7d4',
+position: 'top-rigth'
+});
+// location.reload();
+},
+error: function (xhr, ajaxOptions, thrownError) {
+console.log(xhr);
+$.toast({
+heading: 'error',
+text: 'Echec de la mise à jour.',
+showHideTransition: 'slide',
+icon: 'error',
+loaderBg: '#57c7d4',
+position: 'top-rigth'
+});
+
+}
+});
+}
+});
+	</script>
+{% endblock %}

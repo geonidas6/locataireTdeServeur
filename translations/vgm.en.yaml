@@ -1,0 +1,29 @@
+companyId: numéro IFU
+requestTime: Date de requête
+validationTime: validationTime
+ticketNumber: Numéro unique de certificat
+netWeight: Poids VGM
+tareWeight: Poids CTN
+booking: Booking
+waybill: Numéro de Connaissement
+consignee: Consignataire
+containerNumber: Numéro de conteneur
+cargoType: Type de conteneur
+containerSize:  Taille de conteneur
+sealNumber: Plomb
+natureOfGoods: Marchandise
+company: Exportateur
+companyName: Nom de l'exportateur
+agreementNumber: Numero agrément
+certifyingOfficer: Agent Certificateur
+validatingOfficer: Agent de validation en service au bureau
+weighBridge: Pont bascule
+transporter: transporteur
+driver: conducteur
+truckNumber: Immatriculation
+tvfNumber: Numero DVT
+tvfDate: Date du DVT
+weightingDate1: Date de pesée 1
+weightingDate2: Date de pesée 2
+weighting1: pesée 1
+weighting2: pesée 2

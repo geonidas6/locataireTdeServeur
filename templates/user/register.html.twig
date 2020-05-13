@@ -1,0 +1,53 @@
+{% for flashMessage in app.session.flashbag.get('error') %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <code >{{ flashMessage}}</code>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <i class="ik ik-x"></i>
+    </button>
+  </div>
+{% endfor %}
+<form id="register_form" action="{{ path('register') }}" method="post">
+  <div class="row">
+    <div class="col col-lg-6 col-xs-6 col-md-6 col-xs-6 col-md-6 col-xs-6 col-md-6">
+      {{ form_row(form.lastName,{'attr':{'class':'form-control','placeholder':'Nom de famille'}}) }}
+    </div>
+    <div class="col col-lg-6 col-xs-6 col-md-6 col-xs-6 col-md-6 col-xs-6 col-md-6">
+      {{ form_row(form.firstName) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+      <span id="error-msg"></span>
+      <span id="valid-msg"></span>
+      {{ form_row(form.tel) }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-lg-6 col-xs-6 col-md-6 col-xs-6 col-md-6 col-xs-6 col-md-6">
+      {{ form_row(form.sexe) }}
+    </div>
+    <div class="col col-lg-6 col-xs-6 col-md-6 col-xs-6 col-md-6 col-xs-6 col-md-6">
+      {{ form_row(form.email) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+      {{ form_row(form.username) }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+      {{ form_row(form.plainPassword) }}
+
+      <div style="margin-left:25%">
+        <input type="submit"  class="btn btn-primary " value="Soumettre" id="Soumettre">
+      </div>
+    </div>
+  </div>
+  {{ form_end(form) }}
+  <div class="register">
+    <a href="{{ path('app_login') }}" class="to_register" id="title_login"> S'identifier </a>
+  </div>
+</form>

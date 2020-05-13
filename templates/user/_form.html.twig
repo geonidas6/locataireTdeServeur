@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class=" btn btn-primary"><i class="ik ik-plus"></i>{{ button_label|default('Add') }}</button>|
+{% if app.user.email == 'adminvgm@cncb.bj' %}
+<a class="btn btn-success" href="{{ path('user_index') }}"><i class="ik ik-list"></i>list</a>
+{% endif %}
+{{ form_end(form) }}

@@ -1,0 +1,5 @@
+dh_doctrine_audit:
+    table_prefix: ''
+    table_suffix: '_audit'
+
+

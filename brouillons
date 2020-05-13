@@ -1,0 +1,172 @@
+{{ form_start(form, {'attr': {'class': 'form-control ','id':'vgm_form'}}) }}
+
+
+<div class="row">
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'transitaire' %} Transitaire  {% endtrans %}</label></strong>
+        {{ form_widget (form.transitaire, {'attr': {'class': 'form-control'}}) }}
+        <p><code>{{ form_errors(form.transitaire) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} companyName  {% endtrans %}</label></strong>
+        {{ form_widget (form.exportateur, {'attr': {'class': 'form-control'}}) }}
+        <p><code>{{ form_errors(form.exportateur) }}</code></p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} companyId  {% endtrans %}</label></strong>
+        {{ form_widget (form.companyId, {'attr': {'class': 'form-control','readonly':'readonly'}}) }}
+        <p><code>{{ form_errors(form.companyId) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} tvfNumber  {% endtrans %}</label></strong>
+        {{ form_widget (form.tvfNumber, {'attr': {'class': 'form-control','readonly':'readonly'}}) }}
+        <p><code>{{ form_errors(form.tvfNumber) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} tvfDate  {% endtrans %}</label></strong>
+        {{ form_widget (form.tvfDate , {'attr': {'class': 'form-control','readonly':'readonly'}}) }}
+        <p><code>{{ form_errors(form.tvfDate) }}</code></p>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-3 col-xl-3 mb-15">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} weighting1  {% endtrans %}</label></strong>
+        {{ form_widget (form.weighting1, {'attr': {'class': 'form-control','min':'0', 'step':'any'}}) }}
+        <p><code>{{ form_errors(form.weighting1) }}</code></p>
+    </div>
+    <div class="col-sm-3 col-xl-3 mb-15">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} weighting2  {% endtrans %}</label></strong>
+        {{ form_widget (form.weighting2, {'attr': {'class': 'form-control','min':'0', 'step':'any'}}) }}
+        <p><code>{{ form_errors(form.weighting2) }}</code></p>
+    </div>
+    <div class="col-sm-3 col-xl-3 mb-15">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} tareWeight  {% endtrans %}</label></strong>
+        {{ form_widget (form.tareWeight, {'attr': {'class': 'form-control','min':'0', 'step':'any'}}) }}
+        <p><code>{{ form_errors(form.tareWeight) }}</code></p>
+    </div>
+    <div class="col-sm-3 col-xl-3 mb-15">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} netWeight  {% endtrans %}</label></strong>
+        {{ form_widget (form.netWeight, {'attr': {'class': 'form-control','min':'0', 'step':'any','readonly':'readonly'}}) }}
+        <p><code>{{ form_errors(form.netWeight) }}</code></p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} waybill  {% endtrans %}</label></strong>
+        {{ form_widget (form.waybill, {'attr': {'class': 'form-control'}}) }}
+        <p><code>{{ form_errors(form.waybill) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} consignee  {% endtrans %}</label></strong>
+        {{ form_widget (form.consignee, {'attr': {'class': 'form-control'}}) }}
+        <p><code>{{ form_errors(form.consignee) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} containerNumber  {% endtrans %}</label></strong>
+        {{ form_widget (form.containerNumber, {'attr': {'class': 'form-control','type':'number'}}) }}
+        <p><code>{{ form_errors(form.containerNumber) }}</code></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} cargoType  {% endtrans %}</label></strong>
+        {{ form_widget (form.cargoType, {'attr': {'class': 'form-control'}}) }}
+        <p><code>{{ form_errors(form.cargoType) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} containerSize  {% endtrans %}</label></strong>
+        {{ form_widget (form.containerSize, {'attr': {'class': 'form-control'}}) }}
+        <p><code>{{ form_errors(form.containerSize) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} sealNumber  {% endtrans %}</label></strong>
+        {{ form_widget (form.sealNumber, {'attr': {'class': 'form-control','type':'number'}}) }}
+        <p><code>{{ form_errors(form.sealNumber) }}</code></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} certifyingOfficer  {% endtrans %}</label></strong>
+        {{ form_widget (form.certifyingOfficer, {'attr': {'class': 'form-control','value':app.user.username,'readonly':'readonly'}}) }}
+        <p><code>{{ form_errors(form.certifyingOfficer) }}</code></p>
+    </div>
+    <div class="col-sm-6 col-xl-4 mb-30">
+        <div class="form-group">
+            <i class="fas fa-clock"></i>
+            <strong><label class="sub-title">{% trans  from 'vgm' %} weightingDate2  {% endtrans %}</label></strong>
+            <input name="weightingDate1" type="text" data-toggle="datetimepicker" data-target ="#vgmcertificat_weightingDate2" class = "form-control datetimepicker-input" />
+            {{ form_widget (form.weightingDate2 , {'attr': {'class': 'form-control hidden'}}) }}
+            <p><code>{{ form_errors(form.weightingDate2) }}</code></p>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-4 mb-30">
+        <div class="form-group">
+            <i class="fas fa-clock"></i>
+            <strong><label class="sub-title">{% trans  from 'vgm' %} weightingDate1  {% endtrans %}</label></strong>
+            <input name="weightingDate1" type="text" data-toggle="datetimepicker" data-target ="#vgmcertificat_weightingDate2" class = "form-control datetimepicker-input" />
+            {{ form_widget (form.weightingDate1 , {'attr': {'class': 'form-control hidden'}}) }}
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+            <p><code>{{ form_errors(form.weightingDate1) }}</code></p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} transporter  {% endtrans %}</label></strong>
+        {{ form_widget (form.transporter, {'attr': {'class': 'form-control'}}) }}
+        <p><code>{{ form_errors(form.transporter) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} driver  {% endtrans %}</label></strong>
+        {{ form_widget (form.driver, {'attr': {'class': 'form-control'}}) }}
+        <p><code>{{ form_errors(form.driver) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} truckNumber  {% endtrans %}</label></strong>
+        {{ form_widget (form.truckNumber, {'attr': {'class': 'form-control','type':'number'}}) }}
+        <p><code>{{ form_errors(form.truckNumber) }}</code></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} booking  {% endtrans %}</label></strong>
+        {{ form_widget (form.booking, {'attr': {'class': 'form-control','type':'number'}}) }}
+        <p><code>{{ form_errors(form.booking) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} weighBridge  {% endtrans %}</label></strong>
+        {{ form_widget (form.weighBridge, {'attr': {'class': 'form-control','type':'number'}}) }}
+        <p><code>{{ form_errors(form.weighBridge) }}</code></p>
+    </div>
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} natureOfGoods  {% endtrans %}</label></strong>
+        {{ form_widget (form.natureOfGoods, {'attr': {'class': 'form-control'}}) }}
+        <p><code>{{ form_errors(form.natureOfGoods) }}</code></p>
+    </div>
+
+    <div class="col-sm-12 col-xl-4 mb-30">
+        <strong><label class="sub-title">{% trans  from 'vgm' %} agreementNumber  {% endtrans %}</label></strong>
+        {{ form_widget (form.agreementNumber, {'attr': {'class': 'form-control','type':'number'}}) }}
+        <p><code>{{ form_errors(form.agreementNumber) }}</code></p>
+    </div>
+
+</div>
+
+<button class="btn btn-success" id="Soumettre">{{ button_label|default('SAVE') }}</button> | <a class="btn btn-primary"
+href="{{ path('vgmcertificat_index') }}"><i
+    class="ion-ios-list"></i> list</a>
+{{ form_end(form) }}
+
+{#vgmcertificat_tvfDate#}
